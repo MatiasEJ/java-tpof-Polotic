@@ -6,6 +6,5 @@
 	</jsp:include>
     <body>
 		<%@include file="_nav.jspf" %>
-        <h1>Hello World!</h1>
     </body>
 </html>
