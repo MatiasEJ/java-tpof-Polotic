@@ -7,8 +7,8 @@ package logica.controladoras;
 
 import java.util.Date;
 import java.util.List;
-import logica.modelos.personas.Empleado;
-import logica.modelos.personas.Usuario;
+import logica.entidades.personas.Empleado;
+import logica.entidades.personas.Usuario;
 import persistencia.EmpleadoPersistencia;
 import persistencia.UsuarioPersistencia;
 
@@ -80,13 +80,13 @@ public class ControladoraEmpleado {
 
 	public void crearEmpleadoPrueba(){
 		Usuario usuario = new Usuario("admin", "admin");
-		persistenciaUsuario.crearUsuario(usuario);
-		Empleado empleado = new Empleado(usuario, "Juan");
+		Empleado empleado = new Empleado();
 		empleado.setApellido("juan");
 		empleado.setCargo("Admin");
 		empleado.setDireccion("Calle falsa 123");
 		empleado.setDni("123123123");
 		empleado.setFechaNacimiento(new Date());
+		empleado.setUsuario(usuario);
 		persistenciaEmpleado.crearEmpleado(empleado);
 	}
 

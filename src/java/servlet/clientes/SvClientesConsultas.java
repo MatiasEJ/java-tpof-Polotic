@@ -6,7 +6,6 @@
 package servlet.clientes;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.util.Paginas;
 import logica.controladoras.ControladoraCliente;
-import logica.modelos.personas.Cliente;
+import logica.entidades.personas.Cliente;
 
 /**
  *

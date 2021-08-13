@@ -1,7 +1,6 @@
 package servlet.reservas;
 
 import java.io.IOException;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,13 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.controladoras.ControladoraCliente;
 import logica.util.Paginas;
-import logica.controladoras.ControladoraEmpleado;
 import logica.controladoras.ControladoraHabitacion;
 import logica.controladoras.ControladoraReservas;
-import logica.modelos.habitaciones.Habitacion;
-import logica.modelos.personas.Cliente;
-import logica.modelos.personas.Empleado;
-import logica.modelos.reserva.Reserva;
+import logica.entidades.habitaciones.Habitacion;
+import logica.entidades.personas.Cliente;
 import logica.util.DatosReservas;
 import logica.util.Utilidades;
 

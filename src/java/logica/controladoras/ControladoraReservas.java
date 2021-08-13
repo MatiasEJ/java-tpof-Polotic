@@ -11,11 +11,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import logica.entidades.habitaciones.Habitacion;
+import logica.entidades.personas.Empleado;
+import logica.entidades.reserva.Reserva;
 import logica.util.Utilidades;
-import logica.modelos.habitaciones.Habitacion;
-import logica.modelos.personas.Cliente;
-import logica.modelos.personas.Empleado;
-import logica.modelos.reserva.Reserva;
 import persistencia.ReservaPersistencia;
 import persistencia.exceptions.NonexistentEntityException;
 

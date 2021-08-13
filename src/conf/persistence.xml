@@ -2,7 +2,7 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="clientePU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>logica.modelos.personas.Cliente</class>
+    <class>logica.entidades.personas.Cliente</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tpfinalpolo?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
@@ -14,8 +14,8 @@
   </persistence-unit>
   <persistence-unit name="empleadosPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>logica.modelos.personas.Empleado</class>
-    <class>logica.modelos.personas.Usuario</class>
+    <class>logica.entidades.personas.Empleado</class>
+    <class>logica.entidades.personas.Usuario</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tpfinalpolo?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
@@ -27,7 +27,7 @@
   </persistence-unit>
   <persistence-unit name="reservasPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>logica.modelos.reserva.Reserva</class>
+    <class>logica.entidades.reserva.Reserva</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tpfinalpolo?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
@@ -39,7 +39,7 @@
   </persistence-unit>
   <persistence-unit name="habitacionesPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>logica.modelos.habitaciones.Habitacion</class>
+    <class>logica.entidades.habitaciones.Habitacion</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tpfinalpolo?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
@@ -51,7 +51,7 @@
   </persistence-unit>
   <persistence-unit name="usuariosPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>logica.modelos.personas.Usuario</class>
+    <class>logica.entidades.personas.Usuario</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tpfinalpolo?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

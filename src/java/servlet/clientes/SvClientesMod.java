@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.controladoras.ControladoraCliente;
-import logica.modelos.personas.Cliente;
+import logica.entidades.personas.Cliente;
 import logica.util.DatosPersona;
 import logica.util.Paginas;
 import logica.util.Utilidades;

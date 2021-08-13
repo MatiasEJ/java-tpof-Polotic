@@ -6,7 +6,6 @@
 package servlet.reservas;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import logica.controladoras.ControladoraHabitacion;
 import logica.util.Paginas;
 import logica.controladoras.ControladoraReservas;
-import logica.modelos.habitaciones.Habitacion;
-import logica.modelos.reserva.Reserva;
+import logica.entidades.habitaciones.Habitacion;
+import logica.entidades.reserva.Reserva;
 
 /**
  *

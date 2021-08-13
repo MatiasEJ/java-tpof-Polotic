@@ -14,7 +14,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import logica.modelos.reserva.Reserva;
+import logica.entidades.reserva.Reserva;
 import persistencia.exceptions.NonexistentEntityException;
 
 /**

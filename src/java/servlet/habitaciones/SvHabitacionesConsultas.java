@@ -6,7 +6,6 @@
 package servlet.habitaciones;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.util.Paginas;
 import logica.controladoras.ControladoraHabitacion;
-import logica.modelos.habitaciones.Habitacion;
+import logica.entidades.habitaciones.Habitacion;
 
 /**
  *

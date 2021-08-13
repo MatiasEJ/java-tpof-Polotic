@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logica.util.Paginas;
 import logica.controladoras.ControladoraEmpleado;
-import logica.modelos.personas.Empleado;
+import logica.entidades.personas.Empleado;
 import logica.util.DatosPersona;
 
 /**

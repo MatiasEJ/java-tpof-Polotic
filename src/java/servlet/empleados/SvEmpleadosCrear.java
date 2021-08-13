@@ -12,12 +12,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logica.controladoras.ControladoraEmpleado;
+import logica.controladoras.ControladoraUsuario;
+import logica.entidades.personas.Usuario;
 import logica.util.DatosPersona;
 import logica.util.Paginas;
 import logica.util.Utilidades;
-import logica.controladoras.ControladoraEmpleado;
-import logica.controladoras.ControladoraUsuario;
-import logica.modelos.personas.Usuario;
 
 /**
  *

@@ -6,10 +6,10 @@
 package logica.controladoras;
 
 import java.util.ArrayList;
-import logica.modelos.personas.Cliente;
 import java.util.Date;
 import java.util.List;
-import logica.modelos.reserva.Reserva;
+import logica.entidades.personas.Cliente;
+import logica.entidades.reserva.Reserva;
 import persistencia.ClientePersistencia;
 
 /**
@@ -58,12 +58,6 @@ public class ControladoraCliente {
 		return persistenciaCliente.findClienteById(idCliente);
 	}
 
-	public List<Reserva> findReservasBetweenDates(Date in, Date out) {
-		List<Cliente> listaClientes=persistenciaCliente.findAllClientes();
-		List<Reserva> listaReservas = new ArrayList<>();
-
-		return listaReservas;
-	}
 
 	public void borrarClienteById(int idCliente) {
 		persistenciaCliente.borrarClienteById(idCliente);

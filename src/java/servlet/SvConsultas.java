@@ -14,10 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import logica.controladoras.ControladoraCliente;
 import logica.util.Utilidades;
 import logica.controladoras.ControladoraReservas;
-import logica.modelos.reserva.Reserva;
+import logica.entidades.reserva.Reserva;
 import logica.util.Paginas;
 
 /**

@@ -6,8 +6,7 @@
 package logica.controladoras;
 
 import java.util.List;
-import logica.modelos.personas.Usuario;
-import persistencia.UsuarioJpaController;
+import logica.entidades.personas.Usuario;
 import persistencia.UsuarioPersistencia;
 
 /**

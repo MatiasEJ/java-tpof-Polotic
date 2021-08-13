@@ -7,7 +7,7 @@ package logica.controladoras;
 
 import java.util.ArrayList;
 import java.util.List;
-import logica.modelos.habitaciones.Habitacion;
+import logica.entidades.habitaciones.Habitacion;
 import persistencia.HabitacionPersistencia;
 
 /**
