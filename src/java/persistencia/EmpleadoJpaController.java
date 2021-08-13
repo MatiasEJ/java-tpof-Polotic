@@ -14,9 +14,9 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import logica.entidades.Empleado;
+import logica.modelos.personas.Empleado;
+import logica.modelos.personas.Usuario;
 import persistencia.exceptions.NonexistentEntityException;
-import persistencia.exceptions.PreexistingEntityException;
 
 /**
  *
@@ -30,25 +30,34 @@ public class EmpleadoJpaController implements Serializable {
 	private EntityManagerFactory emf = null;
 
 	public EmpleadoJpaController() {
-		emf = Persistence.createEntityManagerFactory("empleadosPU");
+		emf= Persistence.createEntityManagerFactory("empleadosPU");
 	}
 
 	public EntityManager getEntityManager() {
 		return emf.createEntityManager();
 	}
 
-	public void create(Empleado empleado) throws PreexistingEntityException, Exception {
+	public void create(Empleado empleado) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
 			em.getTransaction().begin();
-			em.persist(empleado);
-			em.getTransaction().commit();
-		} catch (Exception ex) {
-			if (findEmpleado(empleado.getId()) != null) {
-				throw new PreexistingEntityException("Empleado " + empleado + " already exists.", ex);
+			Usuario usuario = empleado.getUsuario();
+			if (usuario != null) {
+				usuario = em.getReference(usuario.getClass(), usuario.getId());
+				empleado.setUsuario(usuario);
 			}
-			throw ex;
+			em.persist(empleado);
+			if (usuario != null) {
+				Empleado oldEmpleadoOfUsuario = usuario.getEmpleado();
+				if (oldEmpleadoOfUsuario != null) {
+					oldEmpleadoOfUsuario.setUsuario(null);
+					oldEmpleadoOfUsuario = em.merge(oldEmpleadoOfUsuario);
+				}
+				usuario.setEmpleado(empleado);
+				usuario = em.merge(usuario);
+			}
+			em.getTransaction().commit();
 		} finally {
 			if (em != null) {
 				em.close();
@@ -61,12 +70,32 @@ public class EmpleadoJpaController implements Serializable {
 		try {
 			em = getEntityManager();
 			em.getTransaction().begin();
+			Empleado persistentEmpleado = em.find(Empleado.class, empleado.getId());
+			Usuario usuarioOld = persistentEmpleado.getUsuario();
+			Usuario usuarioNew = empleado.getUsuario();
+			if (usuarioNew != null) {
+				usuarioNew = em.getReference(usuarioNew.getClass(), usuarioNew.getId());
+				empleado.setUsuario(usuarioNew);
+			}
 			empleado = em.merge(empleado);
+			if (usuarioOld != null && !usuarioOld.equals(usuarioNew)) {
+				usuarioOld.setEmpleado(null);
+				usuarioOld = em.merge(usuarioOld);
+			}
+			if (usuarioNew != null && !usuarioNew.equals(usuarioOld)) {
+				Empleado oldEmpleadoOfUsuario = usuarioNew.getEmpleado();
+				if (oldEmpleadoOfUsuario != null) {
+					oldEmpleadoOfUsuario.setUsuario(null);
+					oldEmpleadoOfUsuario = em.merge(oldEmpleadoOfUsuario);
+				}
+				usuarioNew.setEmpleado(empleado);
+				usuarioNew = em.merge(usuarioNew);
+			}
 			em.getTransaction().commit();
 		} catch (Exception ex) {
 			String msg = ex.getLocalizedMessage();
 			if (msg == null || msg.length() == 0) {
-				long id = empleado.getId();
+				int id = empleado.getId();
 				if (findEmpleado(id) == null) {
 					throw new NonexistentEntityException("The empleado with id " + id + " no longer exists.");
 				}
@@ -79,7 +108,7 @@ public class EmpleadoJpaController implements Serializable {
 		}
 	}
 
-	public void destroy(long id) throws NonexistentEntityException {
+	public void destroy(int id) throws NonexistentEntityException {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
@@ -90,6 +119,11 @@ public class EmpleadoJpaController implements Serializable {
 				empleado.getId();
 			} catch (EntityNotFoundException enfe) {
 				throw new NonexistentEntityException("The empleado with id " + id + " no longer exists.", enfe);
+			}
+			Usuario usuario = empleado.getUsuario();
+			if (usuario != null) {
+				usuario.setEmpleado(null);
+				usuario = em.merge(usuario);
 			}
 			em.remove(empleado);
 			em.getTransaction().commit();
@@ -124,7 +158,7 @@ public class EmpleadoJpaController implements Serializable {
 		}
 	}
 
-	public Empleado findEmpleado(long id) {
+	public Empleado findEmpleado(int id) {
 		EntityManager em = getEntityManager();
 		try {
 			return em.find(Empleado.class, id);

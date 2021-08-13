@@ -7,45 +7,87 @@ package logica.controladoras;
 
 import java.util.Date;
 import java.util.List;
-import logica.entidades.Cargo;
-import logica.entidades.Empleado;
-import logica.entidades.Usuario;
+import logica.modelos.personas.Empleado;
+import logica.modelos.personas.Usuario;
 import persistencia.EmpleadoPersistencia;
+import persistencia.UsuarioPersistencia;
 
 /**
  *
- * @author Matias Ezequiel Juncos.
+ * @author keta
  */
 public class ControladoraEmpleado {
 
-	EmpleadoPersistencia empleadoPersistencia = new EmpleadoPersistencia();
+	UsuarioPersistencia persistenciaUsuario = new UsuarioPersistencia();
+	EmpleadoPersistencia persistenciaEmpleado = new EmpleadoPersistencia();
 
-	public List<Empleado> findAllEmpleado() {
-		return empleadoPersistencia.findAllEmpleado();
-	}
-
-	public void crearEmpleado(String nombre, String apellido, String dni, String direccion, Cargo cargo, Date fechaNacimiento) {
+	public void crearEmpleado(String nombre,
+			String apellido,
+			String dni,
+			String direccion,
+			String cargo,
+			Date fechaNac,
+			Usuario usuario
+	) {
 		Empleado empleado = new Empleado();
 		empleado.setNombre(nombre);
 		empleado.setApellido(apellido);
-		empleado.setDni(dni);
 		empleado.setDireccion(direccion);
+		empleado.setDni(dni);
 		empleado.setCargo(cargo);
-		empleado.setFechaNacimiento(fechaNacimiento);
+		empleado.setFechaNacimiento(fechaNac);
+		empleado.setUsuario(usuario);
 
+		persistenciaEmpleado.crearEmpleado(empleado);
+	}
+
+	public Empleado findEmpleadoById(int id) {
+		return persistenciaEmpleado.findEmpleadoById(id);
+	}
+
+	public void modicarEmpleado(Empleado empleado) {
+		persistenciaEmpleado.modificarEmpleado(empleado);
+	}
+
+	public List<Empleado> findAllEmpleado() {
+		return persistenciaEmpleado.findAllEmpleado();
+	}
+
+	public boolean checkEmpleadoCredentials(String nombreUsuario, String password) {
+		List<Usuario> listaUsuarios = persistenciaUsuario.findAllUsuario();
+		if (listaUsuarios != null) {
+			for (Usuario usuario : listaUsuarios) {
+				if (usuario.getNombreUsuario().equals(nombreUsuario)
+						&& usuario.getPassword().equals(password)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public Empleado findEmpleadoByUsername(String username) {
+		for (Empleado emp: persistenciaEmpleado.findAllEmpleado()) {
+			if( emp.getUsuario().getNombreUsuario().equals(username)){
+			return emp;}
+		}
+		return null;
+	}
+
+	public void borrarEmpleadoById(int id) {
+		persistenciaEmpleado.borrarEmpleadoById(id);
 	}
 
 	public void crearEmpleadoPrueba(){
-		Empleado empleado = new Empleado();
-		empleado.setNombre("Juan");
-		empleado.setApellido("Juanes");
-		empleado.setCargo(Cargo.ADMIN);
+		Usuario usuario = new Usuario("admin", "admin");
+		persistenciaUsuario.crearUsuario(usuario);
+		Empleado empleado = new Empleado(usuario, "Juan");
+		empleado.setApellido("juan");
+		empleado.setCargo("Admin");
 		empleado.setDireccion("Calle falsa 123");
 		empleado.setDni("123123123");
 		empleado.setFechaNacimiento(new Date());
-		empleado.setUsuario(new Usuario("admin","admin"));
-
-		empleadoPersistencia.crearEmpleado(empleado);
+		persistenciaEmpleado.crearEmpleado(empleado);
 	}
 
 }

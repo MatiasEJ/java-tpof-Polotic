@@ -1,6 +1,6 @@
-<%@page import="logica.entidades.Empleado"%>
-<%@page import="logica.controladoras.ControladoraEmpleado"%>
+<%@page import="logica.modelos.personas.Empleado"%>
 <%@page import="java.util.List"%>
+<%@page import="logica.controladoras.ControladoraEmpleado"%>
 <!DOCTYPE html>
 <html>
 	<jsp:include page="_head.jsp" >

@@ -1,11 +1,17 @@
-<%@page import="logica.entidades.Cargo"%>
+<%@page import="logica.util.DatosPersona"%>
+<%@page import="logica.util.Cargo"%>
+<%@page import="logica.util.DatosHabitacion"%>
+<%@page import="logica.util.TematicaHabitacion"%>
+<%@page import="logica.util.DatosServlets"%>
 <!DOCTYPE html>
 <html>
-	<%String titulo= "Alta Empleados";%>
+	<%String titulo= DatosPersona.ALTA_EMPLEADO_TITULO;%>
 	<jsp:include page="_head.jsp" >
 		<jsp:param name="title" value="<%= titulo%>" />
 	</jsp:include>
     <body>
+		<%@include file="_nav.jsp" %>
+		<%@include file="_checkUser.jsp"%>
 
 		<section class="py-4 bg-light mb-4">
 			<div class="container">
@@ -16,7 +22,7 @@
 								<h1><%= titulo%></h1> 
 							</div>
 							<div class="card-body">
-								<form action="SvAltaEmpleado" method="POST">
+								<form action="<%= DatosServlets.EMPLEADO_CREAR%>" method="POST">
 									<div class="form-group">
 										<div class="input-group mb-3">
 											<label class="input-group-text">Nombre</label> 
@@ -42,7 +48,7 @@
 									<select class="form-control" name="cargo"  required>
 										<option>-</option>
 										<%
-											for (Cargo cargo: Cargo.values() ) {%>
+											for (Cargo cargo : Cargo.values()) {%>
 										<option><%= cargo.toString()%></option>	
 										<% }%>
 									</select>

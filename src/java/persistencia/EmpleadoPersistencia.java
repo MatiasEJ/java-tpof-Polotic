@@ -8,23 +8,44 @@ package persistencia;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import logica.entidades.Empleado;
+import logica.modelos.personas.Empleado;
+import persistencia.exceptions.NonexistentEntityException;
 
 /**
  *
- * @author Matias Ezequiel Juncos.
+ * @author keta
  */
 public class EmpleadoPersistencia {
-	EmpleadoJpaController empleadoJpaController = new EmpleadoJpaController();
-	public List<Empleado> findAllEmpleado(){
-		return empleadoJpaController.findEmpleadoEntities();
+
+	EmpleadoJpaController jpaController = new EmpleadoJpaController();
+
+	public void crearEmpleado(Empleado empleado) {
+		jpaController.create(empleado);
 	}
-	public void crearEmpleado(Empleado empleado){
+	
+	public List<Empleado> findAllEmpleado(){
+		return jpaController.findEmpleadoEntities();
+	}
+
+	public Empleado findEmpleadoById(int id){
+		return jpaController.findEmpleado(id);
+	}
+
+	public void borrarEmpleadoById(int id) {
 		try {
-			empleadoJpaController.create(empleado);
+			jpaController.destroy(id);
+		} catch (NonexistentEntityException ex) {
+			Logger.getLogger(EmpleadoPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	public void modificarEmpleado(Empleado empleado) {
+		try {
+			jpaController.edit(empleado);
 		} catch (Exception ex) {
 			Logger.getLogger(EmpleadoPersistencia.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
+
 	
 }
