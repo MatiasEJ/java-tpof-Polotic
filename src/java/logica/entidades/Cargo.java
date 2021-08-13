@@ -9,7 +9,7 @@ package logica.entidades;
  *
  * @author Matias Ezequiel Juncos.
  */
-enum Cargo {
+public enum Cargo {
 	GERENTE,
 	ADMIN,
 	DATAENTRY;

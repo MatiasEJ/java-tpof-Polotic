@@ -5,20 +5,33 @@
  */
 package logica.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author Matias Ezequiel Juncos.
  */
-public abstract class Persona {
-	long id;
-	String nombre;
-	String apellido;
-	String dni;
-	Date fechaNacimiento;
-	String direccion;
-	Cargo cargo;
+@Entity
+@Inheritance( strategy = InheritanceType.TABLE_PER_CLASS )
+public abstract class Persona implements Serializable {
+
+	@Id
+	private long id;
+
+	private String nombre;
+	private String apellido;
+	private String dni;
+	private String direccion;
+	private Cargo cargo;
+	@Temporal(javax.persistence.TemporalType.DATE)
+	private Date fechaNacimiento;
 
 	public Persona() {
 	}
@@ -55,14 +68,6 @@ public abstract class Persona {
 		this.dni = dni;
 	}
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-
 	public String getDireccion() {
 		return direccion;
 	}
@@ -78,5 +83,14 @@ public abstract class Persona {
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
 	
 }

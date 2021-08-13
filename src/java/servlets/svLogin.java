@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Matias Ezequiel Juncos.
  */
-@WebServlet(name = "svLogin", urlPatterns = {"/svLogin"})
-public class svLogin extends HttpServlet {
+@WebServlet(name = "SvLogin", urlPatterns = {"/SvLogin"})
+public class SvLogin extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
